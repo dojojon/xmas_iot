@@ -2,7 +2,6 @@
 
 We are going to learn how to IoT enable our Christmas tree lights using MQTT and Python.  
 
-
 ## Some definitions
 
 Lets define some things first.
@@ -114,7 +113,7 @@ client.loop_forever()
 6.  Try running the program.  If it does not work, check out the example in the python folder.
 
 
-## Publisher
+### Publisher
 
 Next we will create another script to publish chat messages.
 
@@ -157,6 +156,44 @@ while running:
 ```
 
 6.  Try running the program in a new terminal window.  You want to have both scripts running at the same time. If it does not work, check out the example in the python folder.
+
+
+##  IoTree
+
+In the above sections we create a simple chat system that allowed Humans to talk to each other.  We can use exactly the same idea to talk to other things.  MQTT does not mind what the contents of the message is, infact it can be up to 256 MB which is really big for a message.
+
+### JSON
+
+JSON stands for JavaScript Object Notation and it's basically just bits of data in a structre that computer programs can read.  It is also human fairly easy for humans to read as well.
+
+For our chat example above we could have used the following rather than adding the name and message together.
+
+```
+{
+    "name": "Santa",
+    "msg":"Ho Ho Ho, Merry Christmas"
+}
+```
+
+###  Christmas tree lights
+
+The christmas tree lights I have used have been made into an IoT device.  The lights are a special kind of light that can be programmed, both for color and brightness.  The are controlled using small micro-controller that has Wifi connectivity.  Its called an ESP8266 and can be programmed and can control the lights using pins similar to those on a Raspberry Pi.
+
+The lights have an MQTT client running on them and they are subscribed to a topic named as follows:
+
+```
+xmas/lights/1
+``` 
+
+The message needs to be in the following json:
+
+```
+{
+    'show':n
+}
+```
+
+n can 0, 1, 2, or 4
 
 
 
