@@ -12,8 +12,7 @@ def on_message(client, userdata, msg):
 
 
 def on_connect(client, userdata, flags, rc):
-    print("Connected with result code")
-    client.subscribe(MSG_TOPIC, qos=1)
+    print("Subscriber Connected" + str(rc))
 
 client = paho.Client()
 
@@ -23,5 +22,8 @@ client.on_connect = on_connect
 
 # Open a client connection
 client.connect("192.168.1.20", 1883)
+
+# Subscribe to chat messages
+client.subscribe(MSG_TOPIC, qos=1)
 
 client.loop_forever()
