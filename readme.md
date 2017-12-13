@@ -42,13 +42,17 @@ You can follow this tutorial without any programming or Python experience, but i
 
 ##  Lets write a client to listen for chat messages
 
-1.  Create a new python script file in your ide and add the following import statements.
+### Subscriber
+
+In this section we are going to write a script to connect to the broker and listen for chat messages.
+
+1.  Create a new python script and save it with the name sub.py. Add the following import statement.  
 
 ```
 import paho.mqtt.client as paho
 ```
 
-2. Add a constant as shown below.  This is our topic and is like an address for messages we are interested in.
+2. Add a constant for our topic.  Our program will subscribe (listen) for messages that are sent from others with this.
 
 ```
 MSG_TOPIC = "chat/msg"
@@ -107,9 +111,52 @@ client.connect("192.168.1.20", 1883)
 client.loop_forever()
 ```
 
-9. Try running the client, it should run without error.
+6.  Try running the program.  If it does not work, check out the example in the python folder.
 
 
+## Publisher
+
+Next we will create another script to publish chat messages.
+
+1.  Create another python script, this time save it with the name pub.py. Add the following import statements.  
+
+```
+import paho.mqtt.publish as publish
+import time
+```
+2.  Again add a constant for our topic.  This needs to match the value used in our sub.py script
+
+```
+MSG_TOPIC = "chat/msg"
+```
+
+3.  Next we are going ask the user to enter there name and store it in a variable.
+
+```
+name = input("Enter your name:")
+```
+
+4. We want the script to repeatedly as the user for messages until they exit.  We will use a variable named ```running``` and a while loop
+
+```
+running = True
+while running:
+```
+
+5. In the while loop we will ask the user to type a message.  If they type 'exit' we will set running to false.  If its something else, then we will build the message to send and publish it.
+
+```
+    msg = input("Enter a message (type exit to quit):")
+
+    if msg == 'exit':
+        running = False
+    else:
+        msg = name + ":" + msg
+        publish.single(MSG_TOPIC, msg, hostname="192.168.1.20")
+
+```
+
+6.  Try running the program in a new terminal window.  You want to have both scripts running at the same time. If it does not work, check out the example in the python folder.
 
 
 
