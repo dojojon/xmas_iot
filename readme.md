@@ -24,19 +24,18 @@ You can follow this tutorial without any programming or Python experience, but i
 
 ## The Post Office
 
-...
+Some terms that we will be using during this session.
 
-
-### Client
-### Broker
-### Message
-### Subscription
-### Topic
+Client - House
+Broker - Post Office
+Message - Letter
+Subscription - ???
+Topic - Address
 
 
 ## Set Up
 
-....
+You will need to install the broker and python packages onto your pi for this lesson.  Check with the person leading the session as this may have already been done for you.  If not you will need to run the ```raspberry_mqtt_install.sh``` as sudo on the pi.
 
 
 ##  Lets write a client to listen for chat messages
@@ -189,11 +188,17 @@ The message needs to be in the following json:
 
 ```
 {
-    'show':n
+    'show': name
 }
 ```
 
-n can 0, 1, 2, or 4
+```effect`` name can be of the following:
 
-
+```
+{"show":"rainbow"}
+{"show":"rainbowWithGlitter"}
+{"show":"bpm"}
+{"show":"confetti"}
+{"show":"sinelon"}
+```
 
